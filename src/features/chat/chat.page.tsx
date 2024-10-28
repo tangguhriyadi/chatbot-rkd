@@ -87,7 +87,7 @@ export function Chat() {
                     {isLoading && (
                         <li className="flex flex-row-reverse">
                             <div className="rounded-xl p-4 shadow-md flex max-w-3/4">
-                                <p className="text-primary">Lagi mikir...</p>
+                                <p className="text-primary">Thinking...</p>
                             </div>
                         </li>
                     )}

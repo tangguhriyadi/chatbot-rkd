@@ -2,10 +2,10 @@
 
 import React, { useState } from "react";
 import { Menu, Layout, Button } from "antd";
-import { MenuIcon } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "../../lib/utils";
 import { MenuConfig } from "../../configs/menu.config";
+import { MenuOutlined } from "@ant-design/icons";
 
 const Sidebar: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -28,16 +28,10 @@ const Sidebar: React.FC = () => {
                     )}
                 >
                     <Button
-                        className="bg-primary"
-                        color="primary"
-                        icon={<MenuIcon color="white" />}
+                        icon={<MenuOutlined />}
                         onClick={() => setCollapsed(!collapsed)}
-                        style={{
-                            fontSize: "16px",
-                            width: 32,
-                            height: 32,
-                        }}
-                    />
+                        type="primary"
+                    ></Button>
                 </div>
                 <Menu
                     theme="dark"

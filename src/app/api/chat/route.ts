@@ -19,9 +19,9 @@ const formatMessage = (message: VercelChatMessage) => {
     return `${message.role}: ${message.content}`;
 };
 
-const TEMPLATE = `You are a helpful assistant named Reka, and must answer all questions.
+const TEMPLATE = `You are a helpful assistant named Reka.
   
-  Answer the question based on the following context and chat history, if you dont't find the answer in the context, please answer anything you know by saying "**external resource**: " at the first line, otherwise dont say that, then continue with your answer:
+  Answer the user's questions based only on the following context. If the answer is not in the context, reply politely that you do not have that information available:
   <context>
     {context}
   </context>
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
         const model = new ChatOpenAI({
             apiKey: process.env.OPENAI_API_KEY!,
             model: "gpt-4o-mini",
-            temperature: 0.2,
+            temperature: 0.3,
             streaming: true,
         });
 
@@ -93,6 +93,7 @@ export async function POST(req: Request) {
         );
         // eslint-disable-next-line
     } catch (e: any) {
+        console.log(e);
         return Response.json({ error: e.message }, { status: e.status ?? 500 });
     }
 }

@@ -6,10 +6,12 @@ import { PlusCircle } from "lucide-react";
 import { useSetRecoilState } from "recoil";
 import { Collection } from "../schema/collection.schema";
 import CollectionModalActionRecoil from "../store/collection-action";
+import { CollectionTableAction } from "./collection-table-action";
 
 export const CollectionTable = () => {
     const { data, isLoading } = useCollection();
     const setModalAction = useSetRecoilState(CollectionModalActionRecoil);
+
     const columns: TableProps<Collection>["columns"] = [
         {
             title: "No",
@@ -33,6 +35,11 @@ export const CollectionTable = () => {
             key: "cmetadata.type",
             dataIndex: "cmetadata.type",
             render: (_, record) => <>{record.cmetadata.type}</>,
+        },
+        {
+            title: "Actions",
+            key: "action",
+            render: (a, record) => <CollectionTableAction id={record.uuid} />,
         },
     ];
 
