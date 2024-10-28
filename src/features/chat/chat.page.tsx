@@ -53,7 +53,7 @@ export function Chat() {
                     ref={chatParent}
                     className="h-1 p-4 flex-grow bg-zinc-50 rounded-lg overflow-y-auto flex flex-col gap-4"
                 >
-                    <li className="flex flex-row-reverse">
+                    <li className="flex flex-row">
                         <div className="rounded-xl p-4 shadow-md flex max-w-3/4 bg-zinc-100">
                             <p className="text-primary">
                                 Hello there ! Can I help you ?
@@ -63,7 +63,10 @@ export function Chat() {
                     {messages.map((m, index) => (
                         <div key={index}>
                             {m.role === "user" ? (
-                                <li key={m.id} className="flex flex-row">
+                                <li
+                                    key={m.id}
+                                    className="flex flex-row-reverse"
+                                >
                                     <div className="rounded-xl p-4 shadow-md flex">
                                         <p className="text-primary">
                                             {m.content}
@@ -71,10 +74,7 @@ export function Chat() {
                                     </div>
                                 </li>
                             ) : (
-                                <li
-                                    key={m.id}
-                                    className="flex flex-row-reverse"
-                                >
+                                <li key={m.id} className="flex flex-row">
                                     <div className="rounded-xl p-4 shadow-md flex w-3/4">
                                         <p className="text-primar">
                                             {formatResponse(m.content)}
@@ -85,7 +85,7 @@ export function Chat() {
                         </div>
                     ))}
                     {isLoading && (
-                        <li className="flex flex-row-reverse">
+                        <li className="flex flex-row">
                             <div className="rounded-xl p-4 shadow-md flex max-w-3/4">
                                 <p className="text-primary">Thinking...</p>
                             </div>
